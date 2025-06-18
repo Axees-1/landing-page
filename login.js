@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionStorage.setItem('axees_logged_in', 'true');
             sessionStorage.setItem('login_timestamp', new Date().toISOString());
             
-            // Redirect to main landing page
-            window.location.href = 'index.html';
+            // Redirect to sales page
+            window.location.href = 'sales.html';
         } else {
             // Show error message
             errorMessage.classList.add('show');

@@ -1,47 +1,14 @@
 // Axees Landing Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Check authentication
-    checkAuthentication();
-    
     // Initialize all functionality
     initMobileNavigation();
     initFormHandling();
     initScrollEffects();
     initAnimations();
     initRotatingText();
+    initCounters();
 });
-
-// Authentication check
-function checkAuthentication() {
-    const isLoggedIn = sessionStorage.getItem('axees_logged_in');
-    
-    // If not logged in, redirect to login page
-    if (!isLoggedIn || isLoggedIn !== 'true') {
-        window.location.href = 'login.html';
-        return;
-    }
-    
-    // Optional: Add logout functionality
-    addLogoutButton();
-}
-
-// Add logout button to navigation
-function addLogoutButton() {
-    const navMenu = document.querySelector('.nav-menu');
-    if (navMenu) {
-        const logoutBtn = document.createElement('button');
-        logoutBtn.className = 'btn btn-primary';
-        logoutBtn.textContent = 'Logout';
-        logoutBtn.style.marginLeft = '1rem';
-        logoutBtn.onclick = function() {
-            sessionStorage.removeItem('axees_logged_in');
-            sessionStorage.removeItem('login_timestamp');
-            window.location.href = 'login.html';
-        };
-        navMenu.appendChild(logoutBtn);
-    }
-}
 
 // Mobile Navigation Toggle
 function initMobileNavigation() {
@@ -435,6 +402,66 @@ function copyEmail() {
         document.execCommand('copy');
         document.body.removeChild(textArea);
         showNotification('Email copied to clipboard!', 'success');
+    });
+}
+
+// Animated Counters
+function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const increment = target / 100; // Animate over 100 steps
+        let current = 0;
+        
+        const updateCounter = () => {
+            if (current < target) {
+                current += increment;
+                if (current > target) current = target;
+                
+                // Format the number based on target value
+                if (target >= 1000) {
+                    counter.textContent = (current / 1000).toFixed(1) + 'K';
+                } else {
+                    counter.textContent = Math.floor(current);
+                }
+                
+                requestAnimationFrame(updateCounter);
+            } else {
+                // Final formatting
+                if (target >= 1000) {
+                    counter.textContent = (target / 1000).toFixed(0) + 'K';
+                } else {
+                    counter.textContent = target;
+                }
+            }
+        };
+        
+        updateCounter();
+    };
+    
+    // Use Intersection Observer to trigger animation when visible
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                if (!counter.dataset.animated) {
+                    counter.dataset.animated = 'true';
+                    // Add slight delay for staggered effect
+                    const delay = Array.from(counters).indexOf(counter) * 200;
+                    setTimeout(() => animateCounter(counter), delay);
+                }
+            }
+        });
+    }, observerOptions);
+    
+    counters.forEach(counter => {
+        observer.observe(counter);
     });
 }
 
