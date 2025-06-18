@@ -1,12 +1,47 @@
 // Axees Landing Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Check authentication
+    checkAuthentication();
+    
     // Initialize all functionality
     initMobileNavigation();
     initFormHandling();
     initScrollEffects();
     initAnimations();
+    initRotatingText();
 });
+
+// Authentication check
+function checkAuthentication() {
+    const isLoggedIn = sessionStorage.getItem('axees_logged_in');
+    
+    // If not logged in, redirect to login page
+    if (!isLoggedIn || isLoggedIn !== 'true') {
+        window.location.href = 'login.html';
+        return;
+    }
+    
+    // Optional: Add logout functionality
+    addLogoutButton();
+}
+
+// Add logout button to navigation
+function addLogoutButton() {
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        const logoutBtn = document.createElement('button');
+        logoutBtn.className = 'btn btn-primary';
+        logoutBtn.textContent = 'Logout';
+        logoutBtn.style.marginLeft = '1rem';
+        logoutBtn.onclick = function() {
+            sessionStorage.removeItem('axees_logged_in');
+            sessionStorage.removeItem('login_timestamp');
+            window.location.href = 'login.html';
+        };
+        navMenu.appendChild(logoutBtn);
+    }
+}
 
 // Mobile Navigation Toggle
 function initMobileNavigation() {
@@ -90,8 +125,8 @@ function initFormHandling() {
             const userType = formData.get('userType');
             
             // Basic validation
-            if (!email || !userType) {
-                showNotification('Please fill in all fields', 'error');
+            if (!email) {
+                showNotification('Please enter your email address', 'error');
                 return;
             }
             
@@ -101,7 +136,7 @@ function initFormHandling() {
             }
             
             // Simulate form submission
-            submitToWaitlist(email, userType);
+            submitToWaitlist(email);
         });
     }
 }
@@ -111,7 +146,7 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-function submitToWaitlist(email, userType) {
+function submitToWaitlist(email) {
     const submitButton = document.querySelector('.waitlist-form .btn');
     const originalText = submitButton.textContent;
     
@@ -363,8 +398,49 @@ window.addEventListener('error', function(e) {
     // Graceful degradation - ensure basic functionality works
 });
 
+// Rotating Text Animation
+function initRotatingText() {
+    const textItems = document.querySelectorAll('.text-item');
+    if (textItems.length === 0) return;
+    
+    let currentIndex = 0;
+    
+    function rotateText() {
+        // Remove active class from all items
+        textItems.forEach(item => item.classList.remove('active'));
+        
+        // Add active class to current item
+        textItems[currentIndex].classList.add('active');
+        
+        // Move to next item
+        currentIndex = (currentIndex + 1) % textItems.length;
+    }
+    
+    // Start rotation
+    rotateText();
+    setInterval(rotateText, 3000); // Change every 3 seconds
+}
+
+// Copy Email Function
+function copyEmail() {
+    const email = 'contact@axees.com';
+    navigator.clipboard.writeText(email).then(() => {
+        showNotification('Email copied to clipboard!', 'success');
+    }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showNotification('Email copied to clipboard!', 'success');
+    });
+}
+
 // Export functions for potential external use
 window.AxeesLanding = {
     scrollToWaitlist,
-    showNotification
+    showNotification,
+    copyEmail
 };
