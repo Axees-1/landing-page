@@ -167,6 +167,14 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.6;
 }
 
+.hero-highlight {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
 /* Mastery text styling */
 .mastery-text {
     margin: 3rem 0;
