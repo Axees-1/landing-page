@@ -398,6 +398,204 @@
         .loading-indicator {
             animation: pulse 1.5s ease-in-out infinite;
         }
+        
+        /* Video Preview Section */
+        .video-preview-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .video-header h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .video-header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .video-placeholder {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        
+        .video-container:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .video-container:hover .play-button {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .play-icon {
+            color: white;
+            font-size: 2rem;
+            margin-left: 4px; /* Optical alignment */
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 2rem;
+            text-align: left;
+        }
+        
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1rem;
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), #a855f7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(124, 58, 237, 0.5); }
+            to { box-shadow: 0 0 30px rgba(124, 58, 237, 0.8); }
+        }
+        
+        .video-description {
+            text-align: left;
+        }
+        
+        .video-description h4 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .video-description ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .video-description li {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1rem;
+            padding-left: 0;
+            position: relative;
+        }
+        
+        .video-description li:before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        @media (max-width: 1024px) {
+            .video-placeholder {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .video-description {
+                text-align: center;
+            }
+            
+            .video-description li:before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .video-header h2 {
+                font-size: 2rem;
+            }
+            
+            .video-preview-section {
+                padding: 1rem;
+                margin: 2rem auto;
+            }
+            
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .play-icon {
+                font-size: 1.5rem;
+            }
+            
+            .video-title {
+                font-size: 1.2rem;
+            }
+            
+            .video-overlay {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -478,6 +676,36 @@
             
             <div class="slide-thumbnails" id="thumbnails">
                 <!-- Thumbnails will be generated by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Video Preview Section -->
+        <div class="video-preview-section">
+            <div class="video-header">
+                <h2>🎬 Video Presentation Coming Soon</h2>
+                <p>Get an exclusive behind-the-scenes look at how Axees is revolutionizing influencer marketing</p>
+            </div>
+            
+            <div class="video-placeholder">
+                <div class="video-container">
+                    <div class="play-button">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-overlay">
+                        <div class="video-title">Axees: The Future of Influencer Marketing</div>
+                        <div class="video-subtitle">Exclusive investor presentation video</div>
+                        <div class="coming-soon-badge">Coming Soon</div>
+                    </div>
+                </div>
+                <div class="video-description">
+                    <h4>What you'll see in the video:</h4>
+                    <ul>
+                        <li>🚀 Live platform demonstration</li>
+                        <li>💡 Team vision and strategy</li>
+                        <li>📊 Market opportunity deep dive</li>
+                        <li>🎯 Investment roadmap</li>
+                    </ul>
+                </div>
             </div>
         </div>
         
