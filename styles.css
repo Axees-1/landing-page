@@ -151,14 +151,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-section h3 {
-    color: white;
+    color: var(--primary-color) !important;
     margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: 600;
 }
 
 .hero-section p {
-    color: #e2e8f0;
+    color: var(--text-primary) !important;
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -166,14 +166,10 @@ h1, h2, h3, h4, h5, h6 {
 .hero-highlight {
     font-size: 1.8rem;
     font-weight: 800;
-    color: white;
+    color: #F59E0B !important; /* Solid gold color - visible on white */
     margin-bottom: 1.2rem;
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
     display: block;
 }
 
