@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-section {
-    background: var(--background-light);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 2rem;
@@ -395,7 +395,7 @@ p {
 /* Hero Section */
 .hero {
     padding: 6rem 0 4rem;
-    background: #ffffff;
+    background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -697,7 +697,7 @@ p {
 /* How It Works Section */
 .how-it-works {
     padding: 5rem 0;
-    background: #f8fafc;
+    background: var(--background-light);
     position: relative;
 }
 
@@ -1275,7 +1275,7 @@ p {
 /* Features Section */
 .features {
     padding: 5rem 0;
-    background: white;
+    background: linear-gradient(180deg, #fafbfc 0%, #ffffff 50%, #fafbfc 100%);
 }
 
 .features-title {
