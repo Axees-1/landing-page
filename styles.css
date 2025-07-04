@@ -209,13 +209,23 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
 }
 
-/* Brand-specific colors */
+/* Brand-specific colors with proper fallbacks */
 .google-brand {
+    color: #4285F4; /* Fallback: Google blue */
+    font-weight: 700;
+    /* Progressive enhancement for supported browsers */
     background: linear-gradient(90deg, #4285F4 0%, #34A853 25%, #FBBC05 50%, #EA4335 75%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 700;
+}
+
+/* Fallback for unsupported browsers */
+@supports not (-webkit-background-clip: text) {
+    .google-brand {
+        color: #4285F4;
+        background: none;
+    }
 }
 
 .facebook-brand {
