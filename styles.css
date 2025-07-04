@@ -113,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-tagline {
     font-size: 1.4rem;
     line-height: 1.4;
-    color: var(--text-secondary);
+    color: var(--text-secondary) !important;
     margin-top: 1rem;
     max-width: 800px;
     margin-left: auto;
@@ -456,11 +456,11 @@ p {
 
 .hero-title {
     margin-bottom: 1.5rem;
-    color: white;
+    color: var(--text-primary) !important;
     font-size: 48px;
     font-weight: 700;
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
     position: relative;
     z-index: 2;
 }
