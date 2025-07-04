@@ -726,7 +726,8 @@ p {
     max-width: 1000px;
     margin: 0 auto;
     padding: 3rem;
-    background: linear-gradient(135deg, #e8dbff 0%, #f0e7ff 100%);
+    background: #ffffff;
+    border: 1px solid var(--border-color);
     border-radius: 32px;
     position: relative;
 }
