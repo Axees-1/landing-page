@@ -200,28 +200,28 @@ h1, h2, h3, h4, h5, h6 {
 .mastery-text p {
     font-size: 1.2rem;
     margin-bottom: 0.8rem;
-    color: var(--text-primary);
+    color: #111827 !important; /* Force dark text - override any conflicts */
     text-shadow: none;
 }
 
 .platform {
     font-weight: 700;
-    color: var(--text-primary);
+    color: #111827 !important; /* Force dark text - ensure visibility */
 }
 
 /* Brand-specific colors - reliable solid colors */
 .google-brand {
-    color: #4285F4; /* Google blue - reliable across all browsers */
+    color: #4285F4 !important; /* Google blue - force override */
     font-weight: 700;
 }
 
 .facebook-brand {
-    color: #1877F2; /* Facebook blue - reliable across all browsers */
+    color: #1877F2 !important; /* Facebook blue - force override */
     font-weight: 700;
 }
 
 .highlight {
-    color: var(--primary-color);
+    color: #6366F1 !important; /* Force Axees purple - ensure visibility */
     font-weight: 800;
     text-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
     animation: glow 2s ease-in-out infinite alternate;
