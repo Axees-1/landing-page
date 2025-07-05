@@ -390,7 +390,7 @@ function initRotatingText() {
 
 // Copy Email Function
 function copyEmail() {
-    const email = 'contact@axees.com';
+    const email = 'axees@axees.io';
     navigator.clipboard.writeText(email).then(() => {
         showNotification('Email copied to clipboard!', 'success');
     }).catch(() => {
